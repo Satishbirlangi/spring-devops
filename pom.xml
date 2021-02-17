@@ -8,6 +8,30 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	<distributionManagement>
+  <repository>
+    <id>release</id>
+    <name>releases</name>
+    <url>http://localhost:8081/artifactory/libs-release-local</url>
+  </repository>
+  <snapshotRepository>
+    <id>snapshot</id>
+    <name>snapshots</name>
+    <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+  </snapshotRepository>
+</distributionManagement>
+
+<scm>
+  <connection>scm:git:git@github.com:Satishbirlangi/spring-devops.git</connection>
+  <developerConnection>scm:git:git@github.com:Satishbirlangi/spring-devops.git</developerConnection>
+  <url>git@github.com:Satishbirlangi/spring-devops.git</url>
+  <tag>HEAD</tag>
+</scm>
+
+
+	
+	
 	<groupId>spring-devops</groupId>
 	<artifactId>spring-devops</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -68,6 +92,16 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-release-plugin</artifactId>
+  <version>2.5.1</version>
+  <configuration>
+    <tagNameFormat>v@{project.version}</tagNameFormat>
+    <autoVersionSubmodules>true</autoVersionSubmodules>
+  </configuration>
+</plugin>
+			
 		</plugins>
 	</build>
 
