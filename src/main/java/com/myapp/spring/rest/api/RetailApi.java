@@ -13,7 +13,6 @@ import com.myapp.spring.repository.RetailStoreRepository;
 
 @RestController
 @RequestMapping("/retail_store")
-
 public class RetailApi {
 
 	@Autowired
