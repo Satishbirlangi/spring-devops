@@ -1,34 +1,34 @@
 package com.myapp.spring.model;
 
-public class AdminData {
+public class UserData {
 
-	private String Username;
+	private String username;
+	private String password;
 
-	private String Password;
+//	public UserData(String username, String password) {
+//		this.username = username;
+//		this.password = password;
+//	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getUsername() {
-		return Username;
-	}
-
-	/**
-	 * @param username
-	 * @param password
-	 */
-	public AdminData(String Username, String Password) {
-		this.Username = Username;
-		this.Password = Password;
-	}
-
-	public void setUsername(String Username) {
-		this.Username = Username;
+		return username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
-	public void setPassword(String Password) {
-		this.Password = Password;
+	@Override
+	public String toString() {
+		return "UserData [username=" + username + ", password=" + password + "]";
 	}
 
 }

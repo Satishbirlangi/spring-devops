@@ -31,6 +31,7 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 
 	@Override
 	public List<RetailStore> findByType(String Category, String Type) {
+
 		// TODO Auto-generated method stub
 		return jdbcTemplate.query("select * from retail_store where Category=? and Type=?",
 				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type);

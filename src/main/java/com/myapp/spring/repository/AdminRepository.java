@@ -1,8 +1,10 @@
 package com.myapp.spring.repository;
 
+import com.myapp.spring.model.UserData;
+
 public interface AdminRepository {
 
-	String findByAdminCredentials(String Username, String Password);
+	UserData saveDetails(UserData admindata);
 
-	String AdminUI();
+	UserData findByUnameandPwd(String Username, String Password);
 }
