@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myapp.spring.model.Credentials;
 import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
@@ -36,4 +39,10 @@ public class RetailApi {
 		return repository.findByName(Category, Type, Name);
 	}
 
+	@PostMapping("/{Category}/{Type}/{Name}/signup")
+	public Credentials saveCredentials(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
+			@PathVariable("Name") String Name, @RequestBody Credentials Cred) {
+
+		return repository.saveCredentials(Category, Type, Name, Cred);
+	}
 }

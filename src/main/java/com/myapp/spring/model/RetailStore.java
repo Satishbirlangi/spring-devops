@@ -1,8 +1,16 @@
 package com.myapp.spring.model;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class RetailStore {
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
 	private Integer Id;
 
@@ -108,6 +116,18 @@ public class RetailStore {
 
 	public void setStock(Integer Stock) {
 		this.Stock = Stock;
+	}
+
+	public boolean validate(String Category, String Type, String Name) {
+
+		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
+				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
+		boolean a = list.isEmpty();
+		if (a == false) {
+			return true;
+		} else
+			return false;
+
 	}
 
 }
