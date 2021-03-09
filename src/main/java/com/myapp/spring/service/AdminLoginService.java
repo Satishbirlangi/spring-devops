@@ -10,16 +10,17 @@ import com.myapp.spring.repository.AdminLoginRepository;
 public class AdminLoginService {
 
 	@Autowired(required = true)
-	AdminLoginRepository repository;
+	AdminLoginRepository repo;
 
-	public boolean validateAdmin(AdminData adminInputData) {
-		AdminData adminData = repository.validateLoggedInAdmin(adminInputData.getUsername());
-		System.out.println("AdminData::" + adminData);
-		if (adminData != null) {
-			if (adminInputData.getPassword().equals(adminData.getPassword())) {
+	public boolean validateUser(AdminData userInputData) {
+		AdminData userData = repo.validateLoggedInAdmin(userInputData.getUsername());
+		System.out.println("UserData::" + userData);
+		if (userData != null) {
+			if (userInputData.getPassword().equals(userData.getPassword())) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 }

@@ -21,10 +21,10 @@ import com.myapp.spring.service.AdminLoginService;
  */
 
 @RestController
-@RequestMapping("/alogin")
+@RequestMapping("/adminlogin")
 public class AdminLoginRestAPI {
 
-	@Autowired(required = true)
+	@Autowired
 	AdminLoginService adminloginservice;
 
 	/**
@@ -35,15 +35,15 @@ public class AdminLoginRestAPI {
 	 * @param resposne
 	 * @return ResponseType
 	 */
-	@RequestMapping(value = "/validate-admin", method = RequestMethod.POST)
-	public @ResponseBody ResponseType validateAdmin(@RequestBody AdminData adminData, HttpServletRequest request) {
+	@RequestMapping(value = "/validate-Admin", method = RequestMethod.POST)
+	public @ResponseBody ResponseType validateAdmin(@RequestBody AdminData userData, HttpServletRequest request) {
 
 		ResponseType respType = new ResponseType();
 		// String userName = request.getParameter("userName");
 		// String pwd = request.getParameter("pwd");
-		System.out.println("UserName:::" + adminData.getUsername() + " ::Password::" + adminData.getPassword());
+		System.out.println("UserName:::" + userData.getUsername() + " ::Password::" + userData.getPassword());
 		try {
-			boolean status = adminloginservice.validateAdmin(adminData);
+			boolean status = adminloginservice.validateLoggedInAdmin(userData);
 			System.out.println("Status::" + status);
 			if (status) {
 				respType.setStatus("success");
