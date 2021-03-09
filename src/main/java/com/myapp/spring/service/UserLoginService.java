@@ -9,7 +9,7 @@ import com.myapp.spring.repository.UserLoginRepository;
 @Service("userloginservice")
 public class UserLoginService {
 
-	@Autowired(required = true)
+	@Autowired
 	UserLoginRepository repository;
 
 	public boolean validateUser(UserData userInputData) {
