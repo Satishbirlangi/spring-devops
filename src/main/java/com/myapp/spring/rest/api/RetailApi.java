@@ -26,6 +26,7 @@ public class RetailApi {
 
 	@GetMapping("/{Category}")
 	public List<RetailStore> findByCategory(@PathVariable("Category") String Category) {
+
 		return repository.findByCategory(Category);
 	}
 
