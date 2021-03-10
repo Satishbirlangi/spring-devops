@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  db:      
+    image: mysql:5.7
+    container_name: mysql_database     
+    volumes:
+      - db_data:/var/lib/mysql     
+    restart: always 
+    environment:
+      MYSQL_ROOT_PASSWORD: word@press
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: abc@123
+  springboot-devops: 
+    depends_on:
+      - db
+    image: springboot-devops
+    container_name: springboot-devops-cont      
+    
+    ports:
+      - "8089:8089"     
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: abc@123
+volumes:
+    db_data:
