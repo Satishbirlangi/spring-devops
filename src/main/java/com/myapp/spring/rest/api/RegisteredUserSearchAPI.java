@@ -14,7 +14,7 @@ import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
 @RestController
-@RequestMapping("reg_search")
+@RequestMapping("retail_store/reg_search")
 
 public class RegisteredUserSearchAPI {
 	@Autowired
