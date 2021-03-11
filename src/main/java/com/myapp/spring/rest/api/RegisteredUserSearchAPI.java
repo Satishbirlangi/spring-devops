@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
+import com.myapp.spring.repository.RetailStoreRepositoryImpl;
 
 @RestController
 @RequestMapping("retail_store")
@@ -22,22 +23,14 @@ import com.myapp.spring.repository.RetailStoreRepository;
 public class RegisteredUserSearchAPI {
 	@Autowired
 	private RetailStoreRepository repository;
+	RetailStoreRepositoryImpl f;
 
 	@GetMapping("/reg_search")
-	public List<RetailStore> findAll(HttpServletRequest request) {
-		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
-
-		System.out.println("isValidUser:" + isValidUser);
-		if (isValidUser != null) {
-			if ((boolean) isValidUser) {
-				System.out.println("is valid user and searching the product");
-				return repository.findAll();
-			}
-		}
-		return null;
+	public List<RetailStore> findAll(String Category) {
+		return repository.findAll();
 	}
 
-	@GetMapping("/{Category}")
+	@GetMapping("reg_search/{Category}")
 	public List<RetailStore> findByCategoryNew(@PathVariable("Category") String category, HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
 		System.out.println("isValidUser:" + isValidUser);
@@ -50,7 +43,7 @@ public class RegisteredUserSearchAPI {
 		return null;
 	}
 
-	@GetMapping("/{Category}/{Type}")
+	@GetMapping("reg_search/{Category}/{Type}")
 	public List<RetailStore> findByType(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
@@ -65,7 +58,7 @@ public class RegisteredUserSearchAPI {
 		return null;
 	}
 
-	@GetMapping("/{Category}/{Type}/{Name}")
+	@GetMapping("reg_search/{Category}/{Type}/{Name}")
 	public List<RetailStore> findByType(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			@PathVariable("Name") String Name, HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
@@ -80,16 +73,20 @@ public class RegisteredUserSearchAPI {
 		return null;
 	}
 
-	@PostMapping("/{Category}/{Type}/{Name}/RegUseraddtocart")
+	@PostMapping("reg_search/{Category}/{Type}/{Name}/RegUseraddtocart")
 	public Orders reguserplacedOrder(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			@PathVariable("Name") String Name, @RequestBody Orders Ord, HttpServletRequest request) {
 		Object oun = Ord.getUsername();
 		Object run = request.getSession().getAttribute("registeredusername");
-
+		// Object rlun = f.rlun.toString();
+		// System.out.println(oun);
+		// System.out.println(run);
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
 		System.out.println("isValidUser:" + isValidUser);
-		if (isValidUser != null && run.equals(oun) && Ord.getCount() != 0 && Ord.getCategory() == Category
-				&& Ord.getType() == Type && Ord.getName() == Name) {
+		if (isValidUser != null && oun.equals(run) && Ord.getCategory().equals(Category) && Ord.getType().equals(Type)
+				&& Ord.getName().equals(Name)) {
+			System.out.println("is valid user and Adding the product");
+
 			if ((boolean) isValidUser) {
 				System.out.println("is valid user and Adding the product");
 

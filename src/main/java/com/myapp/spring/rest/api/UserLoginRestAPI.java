@@ -40,7 +40,7 @@ public class UserLoginRestAPI {
 		ResponseType respType = new ResponseType();
 		// String userName = request.getParameter("userName");
 		// String pwd = request.getParameter("pwd");
-		run = userData.getUsername().toString();
+		run = userData.getUsername();
 		System.out.println("UserName:::" + userData.getUsername() + " ::Password::" + userData.getPassword());
 		try {
 			boolean status = userloginservice.validateLogin(userData);

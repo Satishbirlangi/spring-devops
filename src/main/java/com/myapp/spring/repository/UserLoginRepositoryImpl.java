@@ -33,7 +33,7 @@ public class UserLoginRepositoryImpl implements UserLoginRepository {
 				UserData userData = new UserData();
 				while (rs.next()) {
 					userData.setUsername(rs.getString("username"));
-					rlun = userData.getPassword();
+					rlun = userData.getUsername();
 					userData.setPassword(rs.getString("password"));
 				}
 				return userData;
