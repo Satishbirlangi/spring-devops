@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
@@ -62,4 +65,25 @@ public class RegisteredUserSearchAPI {
 		}
 		return null;
 	}
+
+	@PostMapping("/{Category}/{Type}/{Name}/RegUseraddtocart")
+	public Orders reguserplacedOrder(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
+			@PathVariable("Name") String Name, @RequestBody Orders Ord, HttpServletRequest request) {
+
+		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
+		Object oun = Ord.getUsername();
+		Object run = request.getSession().getAttribute("registeredusername");
+		System.out.println("isValidUser:" + isValidUser);
+		if (isValidUser != null && run.equals(oun) && Ord.getCount() != 0 && Ord.getCategory() == Category
+				&& Ord.getType() == Type && Ord.getName() == Name) {
+			if ((boolean) isValidUser) {
+				System.out.println("is valid user and Adding the product");
+
+				return repository.reguserplacedOrder(Category, Type, Name, Ord);
+			}
+		}
+		return null;
+
+	}
+
 }

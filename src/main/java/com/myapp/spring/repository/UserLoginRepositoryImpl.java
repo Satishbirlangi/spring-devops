@@ -16,6 +16,7 @@ public class UserLoginRepositoryImpl implements UserLoginRepository {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	String rlun;
 
 	@Override
 	public UserData validateLoggedInUser(String userName) {
@@ -31,6 +32,8 @@ public class UserLoginRepositoryImpl implements UserLoginRepository {
 			public UserData extractData(ResultSet rs) throws SQLException, DataAccessException {
 				UserData userData = new UserData();
 				while (rs.next()) {
+					userData.setUsername(rs.getString("username"));
+					rlun = userData.getPassword();
 					userData.setPassword(rs.getString("password"));
 				}
 				return userData;

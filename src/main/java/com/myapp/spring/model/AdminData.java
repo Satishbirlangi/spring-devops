@@ -1,7 +1,7 @@
 package com.myapp.spring.model;
 
 public class AdminData {
-	private String username;
+	String username;
 	private String password;
 
 //	public UserData(String username, String password) {

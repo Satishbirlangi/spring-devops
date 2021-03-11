@@ -36,18 +36,21 @@ public class UserLoginRestAPI {
 	 */
 	@RequestMapping(value = "/validate-user", method = RequestMethod.POST)
 	public @ResponseBody ResponseType validateLogin(@RequestBody UserData userData, HttpServletRequest request) {
-
+		String run;
 		ResponseType respType = new ResponseType();
 		// String userName = request.getParameter("userName");
 		// String pwd = request.getParameter("pwd");
+		run = userData.getUsername().toString();
 		System.out.println("UserName:::" + userData.getUsername() + " ::Password::" + userData.getPassword());
 		try {
 			boolean status = userloginservice.validateLogin(userData);
 			System.out.println("Status::" + status);
 			if (status) {
+
 				respType.setStatus("success");
 				respType.setErrcode(200);
 				respType.setMessage("Valid User");
+				request.getSession().setAttribute("registeredusername", run);
 				request.getSession().setAttribute("isAuthenticated", true);
 			} else {
 				respType.setStatus("failure");
