@@ -17,11 +17,25 @@ import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
 @RestController
-@RequestMapping("retail_store/reg_search")
+@RequestMapping("retail_store")
 
 public class RegisteredUserSearchAPI {
 	@Autowired
 	private RetailStoreRepository repository;
+
+	@GetMapping("/reg_search")
+	public List<RetailStore> findAll(HttpServletRequest request) {
+		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
+
+		System.out.println("isValidUser:" + isValidUser);
+		if (isValidUser != null) {
+			if ((boolean) isValidUser) {
+				System.out.println("is valid user and searching the product");
+				return repository.findAll();
+			}
+		}
+		return null;
+	}
 
 	@GetMapping("/{Category}")
 	public List<RetailStore> findByCategoryNew(@PathVariable("Category") String category, HttpServletRequest request) {
@@ -69,10 +83,10 @@ public class RegisteredUserSearchAPI {
 	@PostMapping("/{Category}/{Type}/{Name}/RegUseraddtocart")
 	public Orders reguserplacedOrder(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			@PathVariable("Name") String Name, @RequestBody Orders Ord, HttpServletRequest request) {
-
-		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
 		Object oun = Ord.getUsername();
 		Object run = request.getSession().getAttribute("registeredusername");
+
+		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
 		System.out.println("isValidUser:" + isValidUser);
 		if (isValidUser != null && run.equals(oun) && Ord.getCount() != 0 && Ord.getCategory() == Category
 				&& Ord.getType() == Type && Ord.getName() == Name) {
