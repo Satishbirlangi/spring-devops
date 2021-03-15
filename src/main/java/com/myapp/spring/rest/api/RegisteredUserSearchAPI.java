@@ -26,12 +26,20 @@ public class RegisteredUserSearchAPI {
 	RetailStoreRepositoryImpl f;
 
 	@GetMapping("/reg_search")
-	public List<RetailStore> findAll(String Category) {
-		return repository.findAll();
-	}
+	public List<RetailStore> findAll(HttpServletRequest request) {
+		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
+		System.out.println("isValidUser:" + isValidUser);
+		if (isValidUser != null) {
+			if ((boolean) isValidUser) {
+				System.out.println("is valid user and searching the product");
+				return repository.findAll();
+			}
+		}
+		return null;
+	};
 
-	@GetMapping("reg_search/{Category}")
-	public List<RetailStore> findByCategoryNew(@PathVariable("Category") String category, HttpServletRequest request) {
+	@GetMapping("/reg_search/{Category}")
+	public List<RetailStore> findByCategory(@PathVariable("Category") String category, HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
 		System.out.println("isValidUser:" + isValidUser);
 		if (isValidUser != null) {
@@ -43,7 +51,7 @@ public class RegisteredUserSearchAPI {
 		return null;
 	}
 
-	@GetMapping("reg_search/{Category}/{Type}")
+	@GetMapping("/reg_search/{Category}/{Type}")
 	public List<RetailStore> findByType(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");
@@ -58,7 +66,7 @@ public class RegisteredUserSearchAPI {
 		return null;
 	}
 
-	@GetMapping("reg_search/{Category}/{Type}/{Name}")
+	@GetMapping("/reg_search/{Category}/{Type}/{Name}")
 	public List<RetailStore> findByType(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			@PathVariable("Name") String Name, HttpServletRequest request) {
 		Object isValidUser = request.getSession().getAttribute("isAuthenticated");

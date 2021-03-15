@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.myapp.spring.model.Credentials;
 import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 
@@ -67,27 +66,6 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public Credentials saveCredentials(String Category, String Type, String Name, Credentials Cred) {
-		// TODO Auto-generated method stub
-		// return null;
-
-		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
-		boolean a = list.isEmpty();
-
-		if (a == false) {
-
-			jdbcTemplate.update("insert into credentials(Username,Password) Values (?,?)", Cred.getUsername(),
-					Cred.getPassword());
-			jdbcTemplate.update("update orders set Username=? where Username is NULL", Cred.getUsername());
-			return Cred;
-		} else
-
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product details have an error");
-
-	}
-
-	@Override
 	public Orders placedOrder(String Category, String Type, String Name, Orders order) {
 		// TODO Auto-generated method stub
 		// return null;
@@ -108,6 +86,28 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product details have an error");
 
 	}
+	/*
+	 * @Override public Credentials saveCredentials(String Category, String Type,
+	 * String Name, Credentials Cred) { // TODO Auto-generated method stub // return
+	 * null;
+	 * 
+	 * List<RetailStore> list = jdbcTemplate.
+	 * query("select * from retail_store where Category=? and Type=? and Name=?",
+	 * new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
+	 * boolean a = list.isEmpty();
+	 * 
+	 * if (a == false) {
+	 * 
+	 * jdbcTemplate.update("insert into credentials(Username,Password) Values (?,?)"
+	 * , Cred.getUsername(), Cred.getPassword());
+	 * jdbcTemplate.update("update orders set Username=? where Username is NULL",
+	 * Cred.getUsername()); return Cred; } else
+	 * 
+	 * throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+	 * "Product details have an error");
+	 * 
+	 * }
+	 */
 
 	@Override
 	public Orders reguserplacedOrder(String Category, String Type, String Name, Orders order) {

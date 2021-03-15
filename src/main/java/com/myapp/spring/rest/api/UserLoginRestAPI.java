@@ -42,28 +42,23 @@ public class UserLoginRestAPI {
 		// String pwd = request.getParameter("pwd");
 		run = userData.getUsername();
 		System.out.println("UserName:::" + userData.getUsername() + " ::Password::" + userData.getPassword());
-		try {
-			boolean status = userloginservice.validateLogin(userData);
-			System.out.println("Status::" + status);
-			if (status) {
+		boolean status = userloginservice.validateLogin(userData);
+		System.out.println("Status::" + status);
+		if (status) {
 
-				respType.setStatus("success");
-				respType.setErrcode(200);
-				respType.setMessage("Valid User");
-				request.getSession().setAttribute("registeredusername", run);
-				request.getSession().setAttribute("isAuthenticated", true);
-			} else {
-				respType.setStatus("failure");
-				respType.setErrcode(404);
-				respType.setMessage("InValid User");
-				request.getSession().setAttribute("isAuthenticated", false);
-			}
-		} catch (Exception e) {
+			respType.setStatus("success");
+			respType.setErrcode(200);
+			respType.setMessage("Valid User");
+			request.getSession().setAttribute("registeredusername", run);
+			request.getSession().setAttribute("isAuthenticated", true);
+			return respType;
+		} else {
 			respType.setStatus("failure");
-			respType.setErrcode(500);
-			respType.setMessage(e.getMessage());
+			respType.setErrcode(404);
+			respType.setMessage("InValid User");
 			request.getSession().setAttribute("isAuthenticated", false);
+			return respType;
 		}
-		return respType;
+
 	}
 }

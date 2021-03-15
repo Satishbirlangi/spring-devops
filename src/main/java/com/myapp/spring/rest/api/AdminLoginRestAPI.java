@@ -26,26 +26,22 @@ public class AdminLoginRestAPI {
 		// String userName = request.getParameter("userName");
 		// String pwd = request.getParameter("pwd");
 		System.out.println("UserName:::" + adminData.getUsername() + " ::Password::" + adminData.getPassword());
-		try {
-			boolean status = adminloginservice.validateAdmin(adminData);
-			System.out.println("Status::" + status);
-			if (status) {
-				respType.setStatus("success");
-				respType.setErrcode(200);
-				respType.setMessage("Valid Admin");
-				request.getSession().setAttribute("isAuthenticated", true);
-			} else {
-				respType.setStatus("failure");
-				respType.setErrcode(404);
-				respType.setMessage("InValid Admin");
-				request.getSession().setAttribute("isAuthenticated", false);
-			}
-		} catch (Exception e) {
+
+		boolean status = adminloginservice.validateAdmin(adminData);
+		System.out.println("Status::" + status);
+		if (status) {
+			respType.setStatus("success");
+			respType.setErrcode(200);
+			respType.setMessage("Valid Admin");
+			request.getSession().setAttribute("isAuthenticated", true);
+			return respType;
+		} else {
 			respType.setStatus("failure");
-			respType.setErrcode(500);
-			respType.setMessage(e.getMessage());
+			respType.setErrcode(404);
+			respType.setMessage("InValid Admin");
 			request.getSession().setAttribute("isAuthenticated", false);
+
+			return respType;
 		}
-		return respType;
 	}
 }
