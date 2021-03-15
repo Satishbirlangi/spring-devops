@@ -12,7 +12,7 @@ import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
 @RestController
-@RequestMapping("/retail_store")
+@RequestMapping("/retail_store/search")
 public class RetailApi {
 
 	@Autowired
