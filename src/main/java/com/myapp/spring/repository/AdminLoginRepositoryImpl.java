@@ -9,34 +9,30 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
-import com.myapp.spring.model.UserData;
+import com.myapp.spring.model.AdminData;
 
 @Repository
-public class UserLoginRepositoryImpl implements UserLoginRepository {
-
+public class AdminLoginRepositoryImpl implements AdminLoginRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-	String rlun;
 
 	@Override
-	public UserData validateLoggedInUser(String userName) {
-
+	public AdminData validateLoggedInAdmin(String userName) {
+		// TODO Auto-generated method stub
 		System.out.println("input login id:" + userName);
-		String SQL = "SELECT * FROM CREDENTIALS WHERE USERNAME = ?";
+		String SQL = "SELECT * FROM ADMINCREDENTIALS WHERE USERNAME = ?";
 		// return jdbcTemplate.query(SQL, new BeanPropertyRowMapper<>(UserData.class),
 		// userName);
 
-		return jdbcTemplate.query(SQL, new Object[] { userName }, new ResultSetExtractor<UserData>() {
+		return jdbcTemplate.query(SQL, new Object[] { userName }, new ResultSetExtractor<AdminData>() {
 
 			@Override
-			public UserData extractData(ResultSet rs) throws SQLException, DataAccessException {
-				UserData userData = new UserData();
+			public AdminData extractData(ResultSet rs) throws SQLException, DataAccessException {
+				AdminData adminData = new AdminData();
 				while (rs.next()) {
-					userData.setUsername(rs.getString("username"));
-					rlun = userData.getUsername();
-					userData.setPassword(rs.getString("password"));
+					adminData.setPassword(rs.getString("password"));
 				}
-				return userData;
+				return adminData;
 
 			}
 
