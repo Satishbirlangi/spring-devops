@@ -28,8 +28,8 @@ public class AdminLoginRepositoryImpl implements AdminLoginRepository {
 			public AdminData extractData(ResultSet rs) throws SQLException, DataAccessException {
 				AdminData adminData = new AdminData();
 				while (rs.next()) {
-					adminData.setAdminPassword(rs.getString("password"));
-					adminData.setAdminUsername(rs.getString("username"));
+					adminData.setPassword(rs.getString("password"));
+					adminData.setUsername(rs.getString("username"));
 				}
 				return adminData;
 

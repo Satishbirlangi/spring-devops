@@ -17,17 +17,17 @@ public class validatingAdmin {
 	@DisplayName("Validating admin")
 	public void ValidatingAdmin() {
 		AdminData ad = new AdminData();
-		ad.setAdminUsername("admin");
-		ad.setAdminPassword("admin");
+		ad.setUsername("admin");
+		ad.setPassword("admin");
 		AdminData ad1 = new AdminData();
-		ad1.setAdminUsername("admin");
-		ad1.setAdminPassword("admin");
+		ad1.setUsername("admin");
+		ad1.setPassword("admin");
 
 		assertNotNull(ad);
-		assertSame("admin", ad.getAdminPassword());
-		assertSame("admin", ad.getAdminUsername());
-		assertSame("admin", ad1.getAdminPassword());
-		assertSame("admin", ad1.getAdminUsername());
+		assertSame("admin", ad.getPassword());
+		assertSame("admin", ad.getUsername());
+		assertSame("admin", ad1.getPassword());
+		assertSame("admin", ad1.getUsername());
 
 	}
 

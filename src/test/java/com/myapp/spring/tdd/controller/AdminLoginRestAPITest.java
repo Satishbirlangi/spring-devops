@@ -19,7 +19,6 @@ import com.myapp.spring.responseType.ResponseType;
 
 @SpringBootTest
 
-
 @AutoConfigureMockMvc
 public class AdminLoginRestAPITest {
 
@@ -29,34 +28,34 @@ public class AdminLoginRestAPITest {
 	MockHttpServletRequest m;
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	AdminData user[] = null;
 	AdminData ad = new AdminData();
 
 	@Test
 	public void ValidatingAdmin() throws Exception {
-		ad.setAdminUsername("admin");
-		ad.setAdminPassword("admin");
+		ad.setUsername("admin");
+		ad.setPassword("admin");
 		String k = "{\r\n" + "     \"username\":\"admin\",\r\n" + "    \"password\":\"admin\"\r\n" + "  }";
-		
+
 		String expectedjson = "{\r\n" + "  \"errcode\": 200,\r\n" + "  \"status\": \"success\",\r\n"
 				+ "  \"message\": \"Valid Admin\",\r\n" + "  \"run\": null\r\n" + "}";
 
 		mockMvc.perform(post("/retail_store/validate-admin").contentType(MediaType.APPLICATION_JSON).content(k))
-				// .accept(MediaType.APPLICATION_JSON))
+
 				.andDo(print()).andExpect(status().isOk()).andExpect(content().json(expectedjson));
 	}
 
 	@Test
 	public void ValidatingnonAdmin() throws Exception {
-		ad.setAdminUsername("admin");
-		ad.setAdminPassword("admin");
+		ad.setUsername("admin");
+		ad.setPassword("admin");
 		String k = "{\r\n" + "     \"username\":\"admkin\",\r\n" + "    \"password\":\"admin\"\r\n" + "  }";
-		
+
 		String expectedjson = "{\r\n" + "  \"errcode\": 404,\r\n" + "  \"status\": \"failure\",\r\n"
 				+ "  \"message\": \"InValid Admin\",\r\n" + "  \"run\": null\r\n" + "}";
 		mockMvc.perform(post("/retail_store/validate-admin").contentType(MediaType.APPLICATION_JSON).content(k))
-				// .accept(MediaType.APPLICATION_JSON))
+
 				.andDo(print()).andExpect(status().isOk()).andExpect(content().json(expectedjson));
 	}
 
