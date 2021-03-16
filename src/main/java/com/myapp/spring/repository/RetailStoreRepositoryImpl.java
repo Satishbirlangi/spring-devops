@@ -129,5 +129,7 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 		} else
 
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product details have an error");
+
 	}
+
 }

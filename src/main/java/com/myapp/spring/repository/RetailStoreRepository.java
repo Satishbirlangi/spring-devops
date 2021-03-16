@@ -19,4 +19,6 @@ public interface RetailStoreRepository {
 
 //	Orders finalOrder(String Category, String Type, String Name);
 
+	Orders reguserplacedOrder(String Category, String Type, String Name, Orders order);
+
 }
