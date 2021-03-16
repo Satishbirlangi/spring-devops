@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myapp.spring.model.Credentials;
+import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.repository.RetailStoreRepository;
 
@@ -22,6 +23,11 @@ public class RetailApi {
 	@Autowired
 
 	private RetailStoreRepository repository;
+
+	@GetMapping
+	public List<RetailStore> findAll() {
+		return repository.findAll();
+	}
 
 	@GetMapping("/{Category}")
 	public List<RetailStore> findByCategory(@PathVariable("Category") String Category) {
@@ -39,10 +45,27 @@ public class RetailApi {
 		return repository.findByName(Category, Type, Name);
 	}
 
-	@PostMapping("/{Category}/{Type}/{Name}/signup")
+	@PostMapping("/{Category}/{Type}/{Name}/addtocart/signup")
 	public Credentials saveCredentials(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
 			@PathVariable("Name") String Name, @RequestBody Credentials Cred) {
 
 		return repository.saveCredentials(Category, Type, Name, Cred);
 	}
+
+	@PostMapping("/{Category}/{Type}/{Name}/addtocart")
+	public Orders placedOrder(@PathVariable("Category") String Category, @PathVariable("Type") String Type,
+			@PathVariable("Name") String Name, @RequestBody Orders Ord) {
+
+		return repository.placedOrder(Category, Type, Name, Ord);
+	}
+
+	/*
+	 * @PostMapping("/{Category}/{Type}/{Name}/addtocart/signup/buy") public Orders
+	 * finalOrder(@PathVariable("Category") String Category, @PathVariable("Type")
+	 * String Type,
+	 * 
+	 * @PathVariable("Name") String Name) {
+	 * 
+	 * return repository.finalOrder(Category, Type, Name); }
+	 */
 }

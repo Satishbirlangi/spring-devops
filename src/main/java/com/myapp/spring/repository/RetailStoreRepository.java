@@ -3,6 +3,7 @@ package com.myapp.spring.repository;
 import java.util.List;
 
 import com.myapp.spring.model.Credentials;
+import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 
 public interface RetailStoreRepository {
@@ -17,4 +18,7 @@ public interface RetailStoreRepository {
 
 	Credentials saveCredentials(String Category, String Type, String Name, Credentials Cred);
 
+	Orders placedOrder(String Category, String Type, String Name, Orders order);
+
+//	Orders finalOrder(String Category, String Type, String Name);
 }

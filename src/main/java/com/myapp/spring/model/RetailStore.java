@@ -1,6 +1,5 @@
 package com.myapp.spring.model;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class RetailStore {
 
 	private Integer Price;
 
-	private Date Expiry_Date;
+	private String Expiry_Date;
 
 	private Integer Stock;
 
@@ -34,7 +33,7 @@ public class RetailStore {
 	}
 
 	public RetailStore(Integer Id, String Category, String Type, String Name, String Brand, String Quantity,
-			Integer Price, Date Expiry_Date, Integer Stock) {
+			Integer Price, String Expiry_Date, Integer Stock) {
 		this.Id = Id;
 		this.Category = Category;
 		this.Type = Type;
@@ -102,11 +101,11 @@ public class RetailStore {
 		this.Price = Price;
 	}
 
-	public Date getExpiry_Date() {
+	public String getExpiry_Date() {
 		return Expiry_Date;
 	}
 
-	public void setExpiry_Date(Date Expiry_Date) {
+	public void setExpiry_Date(String Expiry_Date) {
 		this.Expiry_Date = Expiry_Date;
 	}
 
