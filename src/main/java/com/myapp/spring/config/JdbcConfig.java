@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> ccc160e97986f8a6224f01250256fe30253cc806
 package com.myapp.spring.config;
 
 import javax.sql.DataSource;

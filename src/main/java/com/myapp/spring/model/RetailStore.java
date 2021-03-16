@@ -1,58 +1,11 @@
 package com.myapp.spring.model;
 
-<<<<<<< HEAD
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-=======
->>>>>>> 785c7c7238001745e2746387d177c9d69ce4c74c
 public class RetailStore {
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 
 	private Integer Id;
 
 	private String Category;
 
-<<<<<<< HEAD
-	private String Type;
-
-	private String Name;
-
-	private String Brand;
-
-	private String Quantity;
-
-	private Integer Price;
-
-	private String Expiry_Date;
-
-	private Integer Stock;
-
-	public RetailStore() {
-	}
-
-	public RetailStore(Integer Id, String Category, String Type, String Name, String Brand, String Quantity,
-
-			Integer Price, String Expiry_Date, Integer Stock) {
-
-		this.Id = Id;
-		this.Category = Category;
-		this.Type = Type;
-		this.Name = Name;
-		this.Brand = Brand;
-		this.Quantity = Quantity;
-		this.Price = Price;
-		this.Expiry_Date = Expiry_Date;
-		this.Stock = Stock;
-	}
-
-=======
->>>>>>> 785c7c7238001745e2746387d177c9d69ce4c74c
 	public Integer getId() {
 		return Id;
 	}
@@ -113,15 +66,8 @@ public class RetailStore {
 		return Expiry_Date;
 	}
 
-<<<<<<< HEAD
-	public void setExpiry_Date(String Expiry_Date) {
-
-		this.Expiry_Date = Expiry_Date;
-
-=======
 	public void setExpiry_Date(String expiry_Date) {
 		Expiry_Date = expiry_Date;
->>>>>>> 785c7c7238001745e2746387d177c9d69ce4c74c
 	}
 
 	public Integer getStock() {
@@ -160,18 +106,6 @@ public class RetailStore {
 	private Integer Stock;
 
 	public RetailStore() {
-	}
-
-	public boolean validate(String Category, String Type, String Name) {
-
-		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
-		boolean a = list.isEmpty();
-		if (a == false) {
-			return true;
-		} else
-			return false;
-
 	}
 
 }
