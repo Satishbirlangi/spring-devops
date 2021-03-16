@@ -1,4 +1,4 @@
-package com.myapp.spring.test.retailapi;
+package com.myapp.spring.tdd.controller;
 
 import static org.hamcrest.CoreMatchers.isA;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -27,7 +28,7 @@ import com.myapp.spring.repository.RetailStoreRepository;
 public class GuestUserSearchingTest {
 	@MockBean
 	private RetailStoreRepository service;
-	// MockHttpServletRequest m;
+	MockHttpServletRequest m;
 	@Autowired
 	private MockMvc mockMvc;
 

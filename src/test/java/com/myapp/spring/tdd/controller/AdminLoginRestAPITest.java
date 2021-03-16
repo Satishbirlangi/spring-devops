@@ -1,4 +1,4 @@
-package com.myapp.spring.service;
+package com.myapp.spring.tdd.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.myapp.spring.model.AdminData;
+import com.myapp.spring.rest.api.AdminLoginRestAPI;
 
 @SpringBootTest
 
@@ -26,7 +27,7 @@ import com.myapp.spring.model.AdminData;
 public class AdminLoginRestAPITest {
 
 	@MockBean
-	private AdminLoginRestAPITest service;
+	private AdminLoginRestAPI service;
 	MockHttpServletRequest m;
 	@Autowired
 	private MockMvc mockMvc;

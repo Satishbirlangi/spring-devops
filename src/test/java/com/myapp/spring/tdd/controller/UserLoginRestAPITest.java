@@ -1,4 +1,4 @@
-package com.myapp.spring.service;
+package com.myapp.spring.tdd.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,6 +23,7 @@ import com.myapp.spring.model.Orders;
 import com.myapp.spring.model.RetailStore;
 import com.myapp.spring.model.UserData;
 import com.myapp.spring.responseType.ResponseType;
+import com.myapp.spring.rest.api.UserLoginRestAPI;
 
 @SpringBootTest
 
@@ -34,7 +35,7 @@ import com.myapp.spring.responseType.ResponseType;
 public class UserLoginRestAPITest {
 
 	@MockBean
-	private UserLoginRestAPITest service;
+	private UserLoginRestAPI service;
 	ResponseType r = new ResponseType();
 	MockHttpServletRequest m;
 	@Autowired
@@ -162,11 +163,15 @@ public class UserLoginRestAPITest {
 	@Order(6)
 	public void testSearchRegisteredUserAddToCart() throws Exception {
 		MockHttpSession session = new MockHttpSession();
+		MockHttpSession session1 = new MockHttpSession();
+
 		ud.setUsername("admin");
 		ud.setPassword("admin");
 
 		session.setAttribute("isAuthenticated", true);
+		session1.setAttribute("registereduser", true);
 		Orders o = new Orders();
+		RetailStore rt = new RetailStore();
 		o.setId(1111);
 		o.setCategory("Cooking_Essentials");
 		o.setType("Rice");
@@ -176,6 +181,9 @@ public class UserLoginRestAPITest {
 		o.setExpiry_Date("2022-09-13");
 		o.setQuantity("5kg");
 		o.setPrice(265);
+		rt.setCategory("Cooking_Essentials");
+		rt.setType("Rice");
+		rt.setName("BasmatiRice");
 
 		var or = "Response Body\r\n" + "Response Body (RAW)\r\n" + "Response Headers\r\n" + "Request Details\r\n"
 				+ "{\r\n" + "  \"username\": \"admin\",\r\n" + "  \"id\": 1111,\r\n"
@@ -183,10 +191,11 @@ public class UserLoginRestAPITest {
 				+ "  \"name\": \"BasmatiRice\",\r\n" + "  \"brand\": \"Fortune\",\r\n" + "  \"quantity\": \"5kg\",\r\n"
 				+ "  \"price\": 265,\r\n" + "  \"expiry_Date\": \"2022-09-13\",\r\n" + "  \"count\": 50\r\n" + "}";
 		MockHttpServletRequestBuilder builder = MockMvcRequestBuilders
-				.post("/retail_store/reg_search/Cooking_Essentials/Rice/BasmatiRice/RegUseraddtocart", m)
+				.post("/retail_store/reg_search/{Category}/{Type}/{Name}/RegUseraddtocart", rt.getCategory(),
+						rt.getType(), rt.getName(), o, m)
 				.contentType(MediaType.APPLICATION_JSON).content(or)
 
-				.session(session);
+				.session(session).session(session1);
 
 		mockMvc.perform(builder).andDo(print());
 		// .isOk();
