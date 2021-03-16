@@ -12,10 +12,10 @@ public class AdminLoginService {
 	AdminLoginRepository repository;
 
 	public boolean validateAdmin(AdminData adminInputData) {
-		AdminData adminData = repository.validateLoggedInAdmin(adminInputData.getUsername());
+		AdminData adminData = repository.validateLoggedInAdmin(adminInputData.getAdminUsername());
 		System.out.println("AdminData::" + adminData);
 		if (adminData != null) {
-			if (adminInputData.getPassword().equals(adminData.getPassword())) {
+			if (adminInputData.getAdminPassword().equals(adminData.getAdminPassword())) {
 				return true;
 			}
 		}

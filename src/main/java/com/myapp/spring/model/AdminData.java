@@ -1,27 +1,27 @@
 package com.myapp.spring.model;
 
 public class AdminData {
-	String username;
-	private String password;
+	String adminUsername;
+	private String adminPassword;
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAdminUsername(String username) {
+		adminUsername = username;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAdminPassword(String password) {
+		adminPassword = password;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getAdminUsername() {
+		return adminUsername;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getAdminPassword() {
+		return adminPassword;
 	}
 
 	@Override
 	public String toString() {
-		return "AdminData [username=" + username + ", password=" + password + "]";
+		return "AdminData [username=" + adminUsername + ", password=" + adminPassword + "]";
 	}
 }

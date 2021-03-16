@@ -24,7 +24,8 @@ public class AdminLoginRestAPI {
 
 		ResponseType respType = new ResponseType();
 
-		System.out.println("UserName:::" + adminData.getUsername() + " ::Password::" + adminData.getPassword());
+		System.out
+				.println("UserName:::" + adminData.getAdminUsername() + " ::Password::" + adminData.getAdminPassword());
 
 		boolean status = adminloginservice.validateAdmin(adminData);
 		System.out.println("Status::" + status);
