@@ -27,10 +27,10 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public List<RetailStore> findByCategory(String Category) {
+	public List<RetailStore> findByCategory(String category) {
 
 		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category);
+				new BeanPropertyRowMapper<>(RetailStore.class), category);
 		boolean a = list.isEmpty();
 		if (a == false) {
 			return list;
@@ -40,10 +40,10 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public List<RetailStore> findByType(String Category, String Type) {
+	public List<RetailStore> findByType(String category, String type) {
 
 		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type);
+				new BeanPropertyRowMapper<>(RetailStore.class), category, type);
 		boolean a = list.isEmpty();
 		if (a == false) {
 			return list;
@@ -52,10 +52,10 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public List<RetailStore> findByName(String Category, String Type, String Name) {
-		// TODO Auto-generated method stub
+	public List<RetailStore> findByName(String category, String type, String name) {
+		
 		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
+				new BeanPropertyRowMapper<>(RetailStore.class), category, type, name);
 		boolean a = list.isEmpty();
 		if (a == false) {
 			return list;
@@ -65,10 +65,10 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public Orders placedOrder(String Category, String Type, String Name, Orders order) {
+	public Orders placedOrder(String category, String type, String name, Orders order) {
 
 		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
+				new BeanPropertyRowMapper<>(RetailStore.class), category, type, name);
 		boolean a = list.isEmpty();
 
 		if (a == false) {
@@ -85,10 +85,10 @@ public class RetailStoreRepositoryImpl implements RetailStoreRepository {
 	}
 
 	@Override
-	public Orders reguserplacedOrder(String Category, String Type, String Name, Orders order) {
+	public Orders reguserplacedOrder(String category, String type, String name, Orders order) {
 
 		List<RetailStore> list = jdbcTemplate.query("select * from retail_store where Category=? and Type=? and Name=?",
-				new BeanPropertyRowMapper<>(RetailStore.class), Category, Type, Name);
+				new BeanPropertyRowMapper<>(RetailStore.class), category, type, name);
 		boolean a = list.isEmpty();
 
 		if (a == false) {
