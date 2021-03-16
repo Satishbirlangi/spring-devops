@@ -33,7 +33,9 @@ public class RetailStore {
 	}
 
 	public RetailStore(Integer Id, String Category, String Type, String Name, String Brand, String Quantity,
+
 			Integer Price, String Expiry_Date, Integer Stock) {
+
 		this.Id = Id;
 		this.Category = Category;
 		this.Type = Type;
@@ -106,7 +108,9 @@ public class RetailStore {
 	}
 
 	public void setExpiry_Date(String Expiry_Date) {
+
 		this.Expiry_Date = Expiry_Date;
+
 	}
 
 	public Integer getStock() {
