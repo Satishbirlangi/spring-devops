@@ -10,6 +10,8 @@
     "type": "Rice",
  "stock":90
 },
+
+
  {
     "name": "Dark Fantacy Chaco fills",
     "id": 2111,
@@ -21,6 +23,7 @@
     "price": 77,
     "stock": 5
   },
+
  {
     "name": "Cornflakes",
     "id": 3121,
@@ -32,6 +35,7 @@
     "price": 149,
     "stock": 220
   },
+
 {
     "name": "Hair Oil",
     "id": 4111,
@@ -43,4 +47,5 @@
     "price": 327,
     "stock": 30
   }
+
 ]

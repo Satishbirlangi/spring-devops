@@ -1,8 +1,7 @@
 package com.myapp.spring.model;
 
 public class AdminData {
-
-	private String username;
+	String username;
 	private String password;
 
 //	public UserData(String username, String password) {
@@ -28,7 +27,6 @@ public class AdminData {
 
 	@Override
 	public String toString() {
-		return "UserData [username=" + username + ", password=" + password + "]";
+		return "AdminData [username=" + username + ", password=" + password + "]";
 	}
-
 }
